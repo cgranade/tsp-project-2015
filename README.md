@@ -5,6 +5,10 @@
 - [Installing Anaconda and QuTiP](http://nbviewer.ipython.org/github/cgranade/tsp-project-2015/blob/master/tutorials/qutip-installation.ipynb)
 - [Codecademy Python Course](https://www.codecademy.com/tracks/python) -- covers general-use Python, including data structures, object-oriented programming and file I/O
 
+## Exercises ##
+
+- [Week 3](http://nbviewer.ipython.org/github/cgranade/tsp-project-2015/blob/master/exercises/week-3-exercises.ipynb)
+
 ## Books and Lecture Notes ##
 
 - [*Quantum Computation and Quantum Information*](http://www.amazon.com/Quantum-Computation-Information-Anniversary-Edition/dp/1107002176), Nielsen and Chuang ([first chapter](http://www.michaelnielsen.org/qcqi/QINFO-book-nielsen-and-chuang-toc-and-chapter1-nov00.pdf)).
