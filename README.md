@@ -9,7 +9,7 @@
 
 - [Week 3 Exercises](http://nbviewer.ipython.org/github/cgranade/tsp-project-2015/blob/master/exercises/week-3-exercises.ipynb)
 - [Week 4 Example: Superdense Coding](http://nbviewer.ipython.org/github/cgranade/tsp-project-2015/blob/master/examples/superdense-coding.ipynb)
-- [Week 5 Exercises: Mixed States](http://nbviewer.ipython.org/github/cgranade/tsp-project-2015/blob/master/exercises/week-3-mixed-states.ipynb)
+- [Week 5 Exercises: Mixed States](http://nbviewer.ipython.org/github/cgranade/tsp-project-2015/blob/master/exercises/week-5-mixed-states.ipynb)
 
 ## Books and Lecture Notes ##
 
