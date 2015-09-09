@@ -27,7 +27,7 @@ notitlepage,12pt]{revtex4-1}
 
 \paragraph*{Group size:} Variations of this problem are possible, for up to 3 students in total.
 
-\paragraph*{Introduction:} In our daily workwe often encounter certain inequalities that we\,---\,for one reason or another\,---\,believe to be true. 
+\paragraph*{Introduction:} In our daily work we often encounter certain inequalities that we\,---\,for one reason or another\,---\,believe to be true. 
 %
 As a trivial example we consider the inequality
 \begin{align}
@@ -68,7 +68,56 @@ I(A:B|C) \geq -\log F \Big(\rho_{ABC} , (1_A \otimes \rho_{BC}^{\frac12})  (1_{A
 
 There are further variations of this inequality available that require picking two states and a quantum channel at random, but we will get to that later. 
 
+\section{Entropy of Informative Priors for State and Channel Tomography}
 
+\paragraph*{Supervision:} Chris Granade
+
+\paragraph*{Group size:} Up to two students would be ideal for this project.
+
+\paragraph*{Introduction:} Bayesian inference is a very useful tool in a wide range of fields, including quantum information. In particular, Bayes' rule tells us how to describe what we learn from experimental data,
+\begin{equation}
+  \Pr(\text{model} | \text{data}) = \frac{\Pr(\text{data} | \text{model})}{\Pr(\text{data})} \Pr(\text{model}).
+\end{equation}
+Here, $\Pr(\text{data} | \text{model})$ is the \emph{likelihood function} for
+a particular experiment--- for instance, Born's Rule, $\tr(E \rho)$. In that
+case, we think of the mixed state $\rho$ as a model we would like to learn;
+this problem is called \emph{tomography}. The distribution $\Pr(\text{model} |
+\text{data})$ encodes the probability for different models conditioned on the
+experimental data we collect. This distribution is called the
+\emph{posterior}, and can be used to estimate models, characterize our
+uncertainty and to design new experiments to learn adaptively. Though the
+normalization factor $\Pr(\text{data})$ encodes useful information about the
+plausibility of our model, we will not concern ourselves with it at the moment.
+
+Finally, the distribution $\Pr(\text{model})$ is called the \emph{prior} and
+is how we account for the assumptions we make before we see any data. There is
+a wide range of work concerning how to best choose priors, and in particular,
+how constraints imposed by \emph{a priori} assumptions should be represented.
+One very important principle that is often employed in choosing priors is that
+they should represent as little information as is possible while still encoding
+particular assumptions. This is formalized as the \emph{maximum entropy} principle,
+which prescribes that one should choose a prior that maximizes the
+differential entropy
+\begin{equation}
+    H(\Pr(x)) = -\int p(x) \log p(x) \mathrm{d}x,
+\end{equation}
+where for brevity we have let $x$ stand for an arbitrary model.
+For example, the normal distribution is the maximum entropy prior that arises
+from constraining the mean and variance\footnote{Wikipedia has a nice derivation
+of this fact, if you are interested. See \url{https://goo.gl/Ib1LbK}.}.
+
+For quantum states, picking useful priors can be a bit tricky. In order to
+perform Bayesian state tomography, we'd like to be able to encode into our
+prior assumptions about which state we think we probably have, such that when
+repeating similar experiments, we don't need as much data. Recently, Granade,
+Combes and Cory have proposed a new prior that does this known as the
+generalized amplitude damping (GAD) prior. They have conjectured that this
+prior is also a maximum entropy prior, subject to the constraints we would
+like to impose. In this project, you will numerically test whether the GAD
+prior is maximum entropy under these constraints by calculating the entropy of
+both the GAD prior and minor variations on that prior. In doing so, you will
+either provide evidence for or counterexamples against the validity of that
+maximum-entropy conjecture for GAD priors.
 
 
 \bibliography{library}
