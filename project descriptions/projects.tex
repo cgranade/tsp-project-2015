@@ -1,0 +1,76 @@
+\documentclass[aps,pra,onecolumn,nofootinbib,superscriptaddress,tightenlines,
+notitlepage,12pt]{revtex4-1}
+
+%............................
+
+\usepackage[ colorlinks = true,
+             linkcolor = blue,
+             urlcolor  = blue,
+             citecolor = red,
+             anchorcolor = green,
+]{hyperref}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{conj}{Conjecture}
+
+\newcommand{\tr}{\mathrm{tr}}
+
+\begin{document}
+
+
+\section{Numerically Testing a Conjecture}
+
+\paragraph*{Supervision:} Marco Tomamichel
+
+\paragraph*{Group size:} Variations of this problem are possible, for up to 3 students in total.
+
+\paragraph*{Introduction:} In our daily workwe often encounter certain inequalities that we\,---\,for one reason or another\,---\,believe to be true. 
+%
+As a trivial example we consider the inequality
+\begin{align}
+  \sqrt{a + b} \stackrel{?}{\leq} \sqrt{a} + \sqrt{b} \,, \label{eq:ex1}
+\end{align}
+and conjecture that it holds for all $a, b \geq 0$.
+Now in this particular case it is in fact very easy to see that the relation always holds for positive $a$ and $b$. (To verify this, simply  square both sides of the inequality and note that $a + b \leq a + b + 2\sqrt{ab}$.) However, generally it is very difficult to asses if an inequality with several variables holds true for all allowed values of the variables by just staring at it. 
+
+Obviously we could try to prove if it holds, using all the mathematical tools at our disposal. However, this might turn out to be very difficult and time consuming. And more often than not, \emph{Mathematica} cannot help us much either.
+%
+So the first step one often takes\,---\,to gauge if its worth investing further energy\,---\,is to numerically test the inequality. In the above case, one could for example pick values of $a$ and $b$ at random (according to some probability measure) and then simply evaluate the lefthand and righthand side of~\eqref{eq:ex1}. If the inequality holds for this random example we repeat the process for new random values, until we find a counterexample: a tuple $(a,b)$ that violates~\eqref{eq:ex1}. Well, for the above example we will obviously never find a counterexample, so we also have to abort at some point after we checked enough tuples and convinced ourselves that the inequality might actually hold.
+
+\paragraph*{Goal:}
+The goal of this project is to test some conjectured inequalities where the variables are density operators and quantum channels. These inequalities are currently the topic of intensive research and some of the best people in our field are trying to prove these conjectures analytically. However, surprisingly they have not been thoroughly tested using numerics, and this is where you can contribute. 
+
+Using Python and QuTip, you will test the conjectures on randomly chosen states and channels (where applicable). You will optimize the code so that you can test it for larger systems. You will implement an algorithm to locally optimize your potential counterexample. You will write the code and document it in detail so that it can serve as a tutorial on how to use numerical methods to find counterexamples. The code and documentation will be an important part of your report.
+
+\paragraph*{More background:}
+The following inequalities will be considered:
+\begin{description}
+  \item[Petz Recovery Map and Relative Entropy]
+    This conjecture is known to be false, because we have found numerical counterexamples. As a first step you should reproduce such counterexamples.
+   \begin{align}
+     I(A:B|C) \geq D \Big(\rho_{ABC} \Big\| (1_A \otimes \rho_{BC}^{\frac12})  (1_{AB} \otimes \rho_{C}^{-\frac12}) (\rho_{AC} \otimes 1_B) (1_{AB} \otimes \rho_{C}^{-\frac12} ) (1_A \otimes \rho_{BC}^{\frac12}) \Big)
+   \end{align}
+   Here $\rho_{ABC}$ is a quantum state on three systems. The quantity $I(A:B|C)$ is called the conditional mutual information and it is defined as
+   \begin{align}
+     I(A:B|C) = H(AC) + H(BC) - H(C) - H(ABC)
+   \end{align}
+   where $H(A) = -\tr (\rho_A \log \rho_A)$ is the von Neumann entropy of a state. Finally, the relative entropy is defined as $D(\rho\|\sigma) = \tr(\rho (\log \rho - \log \sigma))$.
+
+  \item[Petz Recovery Map and Fidelity] This one might actually be true; indeed, we very much hope so. However, we cannot show this right now so the numerical tests will be very useful.
+  \begin{align}
+I(A:B|C) \geq -\log F \Big(\rho_{ABC} , (1_A \otimes \rho_{BC}^{\frac12})  (1_{AB} \otimes \rho_{C}^{-\frac12}) (\rho_{AC} \otimes 1_B) (1_{AB} \otimes \rho_{C}^{-\frac12} ) (1_A \otimes \rho_{BC}^{\frac12}) \Big)
+  \end{align}
+     
+\end{description}
+
+There are further variations of this inequality available that require picking two states and a quantum channel at random, but we will get to that later. 
+
+
+
+
+\bibliography{library}
+
+\end{document}
