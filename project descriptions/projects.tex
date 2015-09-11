@@ -75,7 +75,7 @@ There are further variations of this inequality available that require picking t
 \paragraph*{Group size:} Up to two students would be ideal for this project.
 
 \paragraph*{Introduction:} Bayesian inference is a very useful tool in a wide range of fields, including quantum information. In particular, Bayes' rule tells us how to describe what we learn from experimental data,
-\begin{equation}
+\begin{equation}\label{bayes}
   \Pr(\text{model} | \text{data}) = \frac{\Pr(\text{data} | \text{model})}{\Pr(\text{data})} \Pr(\text{model}).
 \end{equation}
 Here, $\Pr(\text{data} | \text{model})$ is the \emph{likelihood function} for
@@ -118,6 +118,37 @@ prior is maximum entropy under these constraints by calculating the entropy of
 both the GAD prior and minor variations on that prior. In doing so, you will
 either provide evidence for or counterexamples against the validity of that
 maximum-entropy conjecture for GAD priors.
+
+
+\section{Least favorable priors for quantum states}
+
+\paragraph*{Supervision:} Chris Ferrie
+
+\paragraph*{Group size:} Suitable for one student.
+
+\paragraph*{Introduction:} Another possible prescription for a prior comes from decision theory and \emph{worst case} analysis.  To specifying this one, we need to know a little decision theory first.  Recall, when the fidelity between the ``true'' state $\rho$ and your estimated state $\sigma$ is near one, $F(\rho,\sigma) \approx 1$, you've done a good job estimating the state.  In the Bayesian approach, we have at all times a distribution $\Pr(\rho|\texttt{data})$ which encodes our knowledge of the state.  Thus, the best we can do is choose $\sigma$ to be the state that solves
+\begin{equation}
+	\int F(\rho,\sigma) \Pr(\rho|\texttt{data}) d\rho = \max_{\sigma'}	\int F(\rho,\sigma') \Pr(\rho|\texttt{data}) d\rho.
+\end{equation}
+
+Your knowledge after a bunch of measurements is $\Pr(\rho|\texttt{data})$.  According to Equation \eqref{bayes} above, this requires a \emph{prior} $\pi(\rho):=\Pr(\rho)$, which is what you know before seeing any data.  Now, what if $\rho$ is selected by an adversary?  Or, your funding agency doesn't want your analysis to hinge on what you, personally, know?  In this case, the state you want to estimate is the $\sigma$ which solves (using Bayes rule above)
+\begin{equation}
+\min_\pi	\int F(\rho,\sigma) \frac{\Pr(\texttt{data}|\rho)\pi(\rho)}{\Pr(\texttt{data})} d\rho = \min_\pi \max_{\sigma'}	\int F(\rho,\sigma')  \frac{\Pr(\texttt{data}|\rho)\pi(\rho)}{\Pr(\texttt{data})} d\rho.
+\end{equation}
+
+Now, these look like nasty integrals.  Lucky, we have the tools to numerically calculate them with Monte Carlo algorithms.  Your task will be to implement numerical optimization routines which approximate the solution to these problems.  With the solution in hand, we will analyze its characteristics in hopes of gleaning new insights into the problem of quantum state estimation.
+
+
+
+\section{Adaptive measurement tomography}
+
+\paragraph*{Supervision:} Chris Ferrie
+
+\paragraph*{Group size:} Suitable for one student.
+
+\paragraph*{Introduction:} Once prior is chosen (see above), one must actually perform measurements, gather and process data to arrive a tomographic estimate of the density matrix representing the preparation of the quantum system.  One can write a horribly complicated global optimization problem which encodes the solution to the \emph{best} set of measurements to perform conditional on all past and potentially future data.  This is completely intractable even numerically, so we heuristics which can perform \emph{well enough}.  
+
+You will simulate quantum tomography experiments and test heuristics for adaptive estimation of not only quantum density matrices, but \emph{regions} of density matrices.  If numerical evidence suggests that your heuristic scales in the same way we know the optimal solution must (from known asymptotic lower bounds), you will have a found a practical prescription for experimentalists to perform the estimation of quantum states.
 
 
 \bibliography{library}
